@@ -122,7 +122,9 @@ friend class schan::Sender;
 friend class schan::SubDone;
 friend class policy::OnServerStreamCreated;
 friend int StreamCreate(StreamId*, Controller&, const StreamOptions*);
+friend int StreamCreate(StreamIds&, int, Controller&, const StreamOptions*);
 friend int StreamAccept(StreamId*, Controller&, const StreamOptions*);
+friend int StreamAccept(StreamIds&, Controller&, const StreamOptions*);
 friend void policy::ProcessMongoRequest(InputMessageBase*);
 friend void policy::ProcessThriftRequest(InputMessageBase*);
     // << Flags >>
@@ -861,9 +863,9 @@ private:
 
     // TODO: Replace following fields with StreamCreator
     // Defined at client side
-    StreamId _request_stream;
+    StreamIds _request_streams;
     // Defined at server side
-    StreamId _response_stream;
+    StreamIds _response_streams;
     // Defined at both sides
     StreamSettings *_remote_stream_settings;
 
